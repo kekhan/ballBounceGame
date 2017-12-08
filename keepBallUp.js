@@ -4,6 +4,8 @@ var bar;
 var ball;
 var score=0;
 var level=0;
+var bgMusic;
+var ballSound;
 
 
 canvas.height = window.innerHeight;
@@ -13,7 +15,7 @@ var ctx= canvas.getContext('2d');
 ctx.font = "30px Arial";
 ctx.fillStyle="red";
 ctx.fillText("Keep the Ball Up",innerWidth/4,40);
-var colors = ['#2C3E50','#FC4349','#D7DADB','#6DBCDB','#FFFFFF'];
+var colors = ['#4AB94E','#5E5EB3','#823D45','#21A68D','#317BC5'];
 
 window.addEventListener('keydown',function(event){
 	canvas.key= event.keyCode;
@@ -21,6 +23,22 @@ window.addEventListener('keydown',function(event){
 window.addEventListener('keyup',function(event){
 	canvas.key=false;
 })
+
+
+function sound(src){
+	/* plays music or sound*/
+	this.sound= document.getElementById('music');
+	this.sound.src=src;
+	this.sound.setAttribute('preload','auto');
+	this.sound.style.display="none";
+	document.body.appendChild(this.sound);
+	this.play = function(){
+		this.sound.play();
+	}
+	this.stop=function(){
+		this.sound.pause();
+	}
+}
 
 
 function Rectangle(x,y,color,width,height,type){
@@ -79,6 +97,8 @@ function Circle(x,y,radius,dx,dy,isCircle){
                (this.y+this.radius) < bar.y + bar.height && (this.radius + this.y) > bar.y){
 				barLine = this.y+this.radius;
 				this.dy = -(dy * 2);
+				ballSound.play()
+				
 				score++;
 			}
 			else if(this.y>bar.y){
@@ -108,13 +128,12 @@ function Circle(x,y,radius,dx,dy,isCircle){
 }
 
 
-
-
 var ballx= Math.random()*innerWidth;
 var bally= Math.random()*innerHeight;
 bar = new Rectangle(innerWidth/4,innerHeight-30,'blue',150,20);
 ball = new Circle(ballx,bally,30,4,4,true);
 Scoretext= new Rectangle("30px", "Consolas", "white", 280, 40, "text");
+ballSound= new sound('bounce.mp3');
 
 function animate(){
 	/*this function repeatedly calls animate function*/
@@ -123,7 +142,7 @@ function animate(){
 	requestAnimationFrame(animate);
 	c.clearRect(0,0,innerWidth,innerHeight);
 	ctx.font="30px Arial";
-    ctx.fillStyle="#2C3E50"
+    ctx.fillStyle="#5E5EB3"
     ctx.fillText("Score:"+score,10,50);
     ctx.fillText("Level:"+level,200,50);
 
