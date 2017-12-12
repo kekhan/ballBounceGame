@@ -6,6 +6,7 @@ var score=0;
 var level=0;
 var bgMusic;
 var ballSound;
+var highestScore=0;
 
 
 canvas.height = window.innerHeight;
@@ -100,8 +101,12 @@ function Circle(x,y,radius,dx,dy,isCircle){
 				ballSound.play()
 				
 				score++;
+				console.log(score);
 			}
 			else if(this.y>bar.y){
+				if(score>=highestScore){
+					highestScore=score;
+				}
 				console.log("Game Over");
 				alert("GAME OVER");
 				score=0;
@@ -145,6 +150,7 @@ function animate(){
     ctx.fillStyle="#5E5EB3"
     ctx.fillText("Score:"+score,10,50);
     ctx.fillText("Level:"+level,200,50);
+    ctx.fillText("High Score:"+highestScore,400,50);
 
     if(score>=30){
     	ctx.fillText("Great Job!!!",innerWidth/2,innerHeight/2);
