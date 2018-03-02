@@ -94,7 +94,7 @@ function Circle(x,y,radius,dx,dy,isCircle){
 	this.collision = function(){
 		var barline = bar.y-this.height;
 
-		if((this.x +this.radius) < bar.x + bar.width && (this.x + this.radius) > bar.x &&
+		if((this.x + this.radius) < bar.x + bar.width + 40 && (this.x + this.radius) > bar.x &&
                (this.y+this.radius) < bar.y + bar.height && (this.radius + this.y) > bar.y){
 				barLine = this.y+this.radius;
 				this.dy = -(dy * 2);
