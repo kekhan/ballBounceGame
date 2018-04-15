@@ -108,7 +108,7 @@ function Circle(x,y,radius,dx,dy,isCircle){
 					highestScore=score;
 				}
 				console.log("Game Over");
-				alert("GAME OVER");
+				//alert("GAME OVER");
 				score=0;
 				level=0;
 				//clearInterval(this.interval);
