@@ -7,7 +7,7 @@ var level=0;
 var bgMusic;
 var ballSound;
 var highestScore=0;
-const total = 5;
+const total = 2;
 var host = 'http://localhost:3000';
 fetch(host + "/highscore").then(resp => resp.json()).then(obj => {
 	highestScore = obj.data;
@@ -21,7 +21,7 @@ var ctx= canvas.getContext('2d');
 ctx.font = "30px Arial";
 ctx.fillStyle="red";
 ctx.fillText("Keep the Ball Up",innerWidth/4,40);
-var colors = ['#4AB94E','#5E5EB3','#823D45','#21A68D','#317BC5'];
+var colors = ['#DDFF39','#1BE865','#ECF8FF','#611AE8','#FF0060'];
 
 window.addEventListener('keydown',function(event){
 	canvas.key= event.keyCode;
@@ -155,8 +155,7 @@ function animate(){
 
 	//console.log(highestScore);
 	requestAnimationFrame(animate);
-
-	c.clearRect(0,0,innerWidth,innerHeight);
+	ctx.clearRect(0,0,innerWidth,innerHeight);
 	bar.updateRectangle();
 	ctx.font="30px Arial";
   ctx.fillStyle="#5E5EB3"
@@ -168,6 +167,7 @@ function animate(){
 		ballArray[i].updateCircle();
 		ballArray[i].collision();
 	}
+
     if(score>=30){
     	ctx.fillText("Great Job!!!",innerWidth/2,innerHeight/2);
     	level=3;
@@ -183,12 +183,6 @@ function animate(){
     }
 	ball.collision();
 	ball.updateCircle();
-
-
-
-
-
-
 
 }
 animate();
