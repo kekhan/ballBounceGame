@@ -90,9 +90,7 @@ function Circle(x,y,radius,dx,dy,isCircle){
 			c.arc(this.x,this.y,this.radius,0,2*Math.PI);
 			c.fillStyle = this.color;
 			c.fill();
-
 		}
-
 	}
 
 	this.collision = function(){
@@ -115,10 +113,7 @@ function Circle(x,y,radius,dx,dy,isCircle){
 
 				}
 				console.log("Game Over");
-<<<<<<< HEAD
-=======
 				//alert("GAME OVER");
->>>>>>> 6840afdaa3f4e126fd2d66f9994189b46e7b11a8
 				score=0;
 				level=0;
 				//clearInterval(this.interval);
