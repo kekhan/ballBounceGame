@@ -115,6 +115,10 @@ function Circle(x,y,radius,dx,dy,isCircle){
 
 				}
 				console.log("Game Over");
+<<<<<<< HEAD
+=======
+				//alert("GAME OVER");
+>>>>>>> 6840afdaa3f4e126fd2d66f9994189b46e7b11a8
 				score=0;
 				level=0;
 				//clearInterval(this.interval);
