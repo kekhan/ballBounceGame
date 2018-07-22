@@ -7,7 +7,7 @@ var level=0;
 var bgMusic;
 var ballSound;
 var highestScore=0;
-const total = 2;
+const total = 20;
 var host = 'http://localhost:3000';
 fetch(host + "/highscore").then(resp => resp.json()).then(obj => {
 	highestScore = obj.data;
@@ -138,7 +138,7 @@ function Circle(x,y,radius,dx,dy,isCircle){
 // declare new objects
 var ballx= Math.random()*innerWidth;
 var bally= Math.random()*innerHeight;
-bar = new Rectangle(innerWidth/4,innerHeight-30,'blue',150,20);
+bar = new Rectangle(innerWidth/4,innerHeight-30,'blue',200,50);
 ball = new Circle(ballx,bally,30,4,4,true);
 Scoretext= new Rectangle("30px", "Consolas", "white", 280, 40, "text");
 ballSound= new sound('bounce.mp3');
@@ -148,6 +148,13 @@ for(let i=0; i<=total; i++){
 	let y= Math.random()*innerHeight;
 	ballArray.push(new Circle(x,y,30,4,4,true));
 	console.log(ballArray[i]);
+}
+function ballLeveltoScreen(ball){
+	for(var i=0; i<ball;i++){
+		ballArray[i].updateCircle();
+		ballArray[i].collision();
+	}
+
 }
 
 function animate(){
@@ -163,24 +170,23 @@ function animate(){
   ctx.fillText("Level:"+level,200,50);
   ctx.fillText("High Score:"+highestScore,400,50);
 
-	for(var i=0; i<=ballArray.length;i++){
-		ballArray[i].updateCircle();
-		ballArray[i].collision();
-	}
 
-    if(score>=30){
-    	ctx.fillText("Great Job!!!",innerWidth/2,innerHeight/2);
+    if(score<5){
+    	level=0;
+			ballLeveltoScreen(0);
+    }
+    else if (score<10){
+    	level=1
+			ballLeveltoScreen(1);
+    }
+    else if(score<15){
     	level=3;
-
+			ballLeveltoScreen(2);
     }
-    else if (score>=20){
-    	ctx.fillText("Almost Leveling up!!",innerWidth/2,innerHeight/2);
-    	level=2
-    }
-    else if(score>=10){
-    	ctx.fillText("WOO HOOO!!",innerWidth/2,innerHeight/2);
-    	level=1;
-    }
+		else if(score<20){
+			level=4
+			ballLeveltoScreen(3);
+		}
 	ball.collision();
 	ball.updateCircle();
 
