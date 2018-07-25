@@ -66,10 +66,10 @@ function Rectangle(x,y,color,width,height,type){
 
 		}
 		if(canvas.key&&canvas.key==37){
-			this.x-=15;
+			this.x-=25;
 		}
 		if(canvas.key&&canvas.key==39){
-			this.x+=15;
+			this.x+=25;
 		}
 		this.drawRectangle();
 	}
