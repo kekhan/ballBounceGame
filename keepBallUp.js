@@ -14,8 +14,8 @@ fetch(host + "/highscore").then(resp => resp.json()).then(obj => {
 	console.log(obj)
 })
 
-canvas.height = 100%;
-canvas.width = 100%;
+canvas.height = 500;
+canvas.width = 600;
 var c = canvas.getContext('2d');
 var ctx= canvas.getContext('2d');
 ctx.font = "30px Arial";
