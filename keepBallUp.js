@@ -20,7 +20,7 @@ var c = canvas.getContext('2d');
 var ctx= canvas.getContext('2d');
 ctx.font = "30px Arial";
 ctx.fillStyle="red";
-ctx.fillText("Keep the Ball Up",innerWidth/4,40);
+ctx.fillText("Keep the Ball Up", canvas.width/4,40);
 var colors = ['#DDFF39','#1BE865','#ECF8FF','#611AE8','#FF0060'];
 
 window.addEventListener('keydown',function(event){
@@ -61,7 +61,7 @@ function Rectangle(x,y,color,width,height,type){
 	}
 
 	this.updateRectangle = function(){
-		if(this.x>innerWidth-100 || this.x<0){
+		if(this.x> canvas.width-100 || this.x<0){
 			this.x=-this.x;
 
 		}
@@ -121,10 +121,10 @@ function Circle(x,y,radius,dx,dy,isCircle){
 
 	}
 		this.updateCircle=function(){
-		if((this.x+this.radius)>innerWidth || (this.x-this.radius)<0){
+		if((this.x+this.radius)> canvas.width || (this.x-this.radius)<0){
 			this.dx=-this.dx;
 		}
-		else if(this.y+this.radius>innerHeight || this.y-this.radius<0){
+		else if(this.y+this.radius>canvas.height || this.y-this.radius<0){
 			this.dy=-this.dy;
 
 		}
@@ -136,16 +136,16 @@ function Circle(x,y,radius,dx,dy,isCircle){
 }
 
 // declare new objects
-var ballx= Math.random()*innerWidth;
-var bally= Math.random()*innerHeight;
-bar = new Rectangle(innerWidth/4,innerHeight-30,'blue',200,50);
+var ballx= Math.random()*canvas.width;
+var bally= Math.random()*canvas.height;
+bar = new Rectangle(canvas.width/4,canvas.height-30,'blue',200,50);
 ball = new Circle(ballx,bally,30,4,4,true);
 Scoretext= new Rectangle("30px", "Consolas", "white", 280, 40, "text");
 ballSound= new sound('bounce.mp3');
 const ballArray = [];
 for(let i=0; i<=total; i++){
-	let x= Math.random()*innerWidth;
-	let y= Math.random()*innerHeight;
+	let x= Math.random()*canvas.width;
+	let y= Math.random()*canvas.height;
 	ballArray.push(new Circle(x,y,30,4,4,true));
 	console.log(ballArray[i]);
 }
@@ -162,7 +162,7 @@ function animate(){
 
 	//console.log(highestScore);
 	requestAnimationFrame(animate);
-	ctx.clearRect(0,0,innerWidth,innerHeight);
+	ctx.clearRect(0,0,canvas.width,canvas.height);
 	bar.updateRectangle();
 	ctx.font="30px Arial";
   ctx.fillStyle="#5E5EB3"
